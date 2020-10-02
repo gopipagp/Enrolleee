@@ -1,0 +1,9 @@
+<app-header></app-header>
+
+<div class="d-flex flex-wrap">
+    <div *ngFor="let user of users" class="m-4">
+        <app-user 
+            [user]="user"
+        ></app-user>
+    </div>
+</div>

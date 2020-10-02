@@ -1,0 +1,52 @@
+<div [ngClass]="{'border-success': user.active}" class="card mb-3 p-3" (click)="open(content)">
+  <div class="card-body">
+    <div class="w-100 text-right">
+        <small>{{user.id}}</small>
+    </div>
+    <h5 class="card-title">{{user.name}}</h5>
+    <p class="card-text">
+        <span class="text-primary">Date Of Birth:</span> 
+        {{user.dateOfBirth}}
+    </p>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    name="name" 
+                    id="name" 
+                    class="form-control" 
+                    [value]="editableUser.name"
+                    (change)="changeName($event)"
+                >
+            </div>
+          <label for="activation">Activation Status</label>
+          <div class="input-group">
+            <input 
+                type="checkbox" 
+                name="activation" 
+                id="activation" 
+                [checked]="editableUser.active"
+                (change)="changeActive($event)">
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="saveUser(modal)">Save</button>
+    </div>
+  </ng-template>
